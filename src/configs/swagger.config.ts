@@ -12,11 +12,6 @@ export const swaggerConfig = {
                 url: "https://spdx.org/licenses/MIT.html",
             },
         },
-        servers: [
-            {
-                url: `${process.env.BASE_URL}`,
-            },
-        ],
     },
     apis: ["./src/routes/swagger/*.ts"],
 };

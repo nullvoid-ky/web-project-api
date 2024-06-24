@@ -14,7 +14,7 @@
  *                  format: password
  *                  example: P@ssw0rd!
  * 
- * /auth/register:
+ * /api/auth/register:
  *      description: Register a new user
  *      post:
  *          summary: Register a new user
@@ -25,10 +25,10 @@
  *                      schema:
  *                         $ref: '#/components/schemas/AuthRequestDto'
  *          responses:
- *          '200':
- *              description: OK
- *          '422':
- *              description: Unprocessable Entity
- *          '500':
- *              description: Internal Server Error
+ *              '201':
+ *                  description: OK
+ *              '422':
+ *                  description: Unprocessable Entity
+ *              '500':
+ *                  description: Internal Server Error
  */
