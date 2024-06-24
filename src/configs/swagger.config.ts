@@ -18,5 +18,5 @@ export const swaggerConfig = {
             },
         ],
     },
-    apis: ["./src/routes/auth.route.ts"],
+    apis: ["./src/routes/swagger/*.ts"],
 };

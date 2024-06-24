@@ -1,7 +1,15 @@
 import { Request, Response } from "express";
+import { AuthRequestDto } from "src/dto/auth.dto";
 
-export const authController = {
-    async login(req: Request, res: Response) {
-        res.send("Login successful!");
+const authController = {
+    async register(req: AuthRequestDto, res: Response) {
+        try {
+            res.status(201).json(req.body);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error");
+        }
     },
 };
+
+export default authController;
