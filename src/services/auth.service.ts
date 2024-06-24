@@ -19,5 +19,13 @@ export const authService = {
             console.error(error);
             throw new Error(error);
         }
+    },
+    async verifyPassword(hashedPassword: string, password: string): Promise<boolean> {
+        try {
+            return await argon2.verify(hashedPassword, password);
+        } catch (error) {
+            console.error(error);
+            throw new Error(error);
+        }
     }
 };
