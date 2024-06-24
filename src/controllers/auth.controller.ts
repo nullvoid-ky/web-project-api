@@ -19,6 +19,14 @@ const authController = {
             return res.status(500).send("Internal Server Error");
         }
     },
+    async login(req: AuthRequestDto, res: Response) {
+        try {
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send("Internal Server Error");
+        }
+    }
 };
 
 export default authController;
