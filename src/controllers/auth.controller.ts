@@ -1,13 +1,18 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { AuthRequestDto } from "src/dto/auth.dto";
+import { userService } from "src/services/user.service";
 
 const authController = {
     async register(req: AuthRequestDto, res: Response) {
         try {
-            res.status(201).json(req.body);
+            const user = await userService.getUserByUsername(req.body.username);
+            if (user)
+                return res.status(400).send("User already exists");
+            const newUser = await userService.createUser(req.body);
+            return res.status(201).json(newUser);
         } catch (error) {
             console.error(error);
-            res.status(500).send("Internal Server Error");
+            return res.status(500).send("Internal Server Error");
         }
     },
 };

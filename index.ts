@@ -5,6 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import dotevn from "dotenv";
 import { swaggerConfig } from "src/configs/swagger.config";
 import cors from "cors";
+import mongoose from "mongoose";
 
 import authRouter from "src/routes/auth.route";
 
@@ -14,6 +15,15 @@ const app = express();
 const port = process.env.PORT;
 
 const specs = swaggerJsdoc(swaggerConfig);
+
+mongoose
+    .connect(process.env.DB_URL || '')
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err: Error) => {
+        console.error('Error connecting to MongoDB:', err);
+    });
 
 app.use(cors());
 app.use(express.json());
