@@ -31,4 +31,36 @@
  *                  description: Unprocessable Entity
  *              '500':
  *                  description: Internal Server Error
+ * 
+ * 
+ * /api/auth/login:
+ *      description: Login
+ *      post:
+ *          summary: Login
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                         $ref: '#/components/schemas/AuthRequestDto'
+ *          responses:
+ *              '201':
+ *                  description: OK
+ *              '422':
+ *                  description: Unprocessable Entity
+ *              '500':
+ *                  description: Internal Server Error
+ * 
+ * 
+ * /api/util/users:
+ *      description: show all users
+ *      get:
+ *          summary: show all users
+ *          responses:
+ *              '201':
+ *                  description: OK
+ *              '422':
+ *                  description: Unprocessable Entity
+ *              '500':
+ *                  description: Internal Server Error
  */

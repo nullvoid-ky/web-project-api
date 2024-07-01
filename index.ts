@@ -6,7 +6,7 @@ import dotevn from "dotenv";
 import { swaggerConfig } from "src/configs/swagger.config";
 import cors from "cors";
 import mongoose from "mongoose";
-
+import utilRouter from "src/routes/util.route";
 import authRouter from "src/routes/auth.route";
 
 dotevn.config();
@@ -30,6 +30,7 @@ app.use(express.json());
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/api/auth", authRouter);
+app.use("/api/util", utilRouter);
 
 app.get("/api", (req: Request, res: Response) => {
     res.send("Hello World!");

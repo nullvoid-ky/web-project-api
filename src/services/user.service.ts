@@ -21,5 +21,16 @@ export const userService = {
             console.error(error);
             throw new Error(error);
         }
+    },
+    async showAllUser() {
+        try {
+            const user = await User.find()
+            console.log(user)
+            return user
+
+        } catch (error) {
+            console.error(error);
+            throw new Error(error);
+        }
     }
 };

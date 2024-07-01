@@ -22,10 +22,12 @@ export const authService = {
     },
     async verifyPassword(hashedPassword: string, password: string): Promise<boolean> {
         try {
-            return await argon2.verify(hashedPassword, password);
+            const verify = await argon2.verify(hashedPassword, password);
+            return verify;
         } catch (error) {
             console.error(error);
-            throw new Error(error);
+            return false
+            // throw new Error(error);
         }
     }
 };
