@@ -1,40 +1,34 @@
 import { Schema } from 'mongoose';
 
-export const userSchema = new Schema(
+export const boardgameSchema = new Schema(
     {
-        username: {
+        name: {
             type: String,
             required: true,
             unique: true,
-            maxlength: 20,
         },
-        displayname:{
+        topic: {
+            type: Array,
+            default: [],
+            required: false,
+        },
+        short: {
             type: String,
             required: false,
             unique: false,
-            maxlength: 30,
+            maxlength: 200,
         },
-        password: {
+        description: {
             type: String,
             required: true,
+            unique: false,
+            maxlength: 500,
         },
-        email:{
+        imgUrl: {
             type: String,
             required: false,
             unique: false,
-            maxlength: 50,
-        },
-        tel:{
-            type: String,
-            required: false,
-            unique: false,
-            maxlength: 20,
-        },
-        birthdate:{
-            type: String,
-            required: false,
-            unique: false,
-            maxlength: 20,
+            maxlength: 500,
         }
     },
     { 
