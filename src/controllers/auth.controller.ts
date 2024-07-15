@@ -21,6 +21,13 @@ const authController = {
     },
     async login(req: AuthRequestDto, res: Response) {
         try {
+            const user = await userService.getUserByUsername(req.body.username);
+            const verify = await authService.verifyPassword(user.password, req.body.password)
+            if (verify){
+                const accessToken = await authService.createAccessToken({ _id: user._id, role: Role.USER });
+                return res.status(201).json({accessToken, user});
+            }
+            return res.status(400).send("Invalid Password");
 
         } catch (error) {
             console.error(error);
