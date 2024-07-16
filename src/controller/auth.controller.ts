@@ -1,8 +1,9 @@
 import { Response } from "express";
-import { AuthRequestDto } from "src/dto/auth.dto";
-import { userService } from "src/services/user.service";
-import { authService } from "src/services/auth.service";
-import { Role } from "src/enums/role.enum";
+import { userService } from "../services/user.service";
+import { authService } from "../services/auth.service";
+import { Role } from "../enums/role.enum";
+import { AuthRequestDto } from "../dto/auth.dto";
+import { UserInterface } from "../interfaces/user.interface";
 
 const authController = {
     async register(req: AuthRequestDto, res: Response) {
@@ -22,6 +23,8 @@ const authController = {
     async login(req: AuthRequestDto, res: Response) {
         try {
             const user = await userService.getUserByUsername(req.body.username);
+            if (!user)
+                return res.status(400).send("User does not exist");
             const verify = await authService.verifyPassword(user.password, req.body.password)
             if (verify){
                 const accessToken = await authService.createAccessToken({ _id: user._id, role: Role.USER });

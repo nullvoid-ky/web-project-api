@@ -1,40 +1,35 @@
-import express from "express";
-import { Request, Response } from "express";
-import swaggerJsdoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
-import dotevn from "dotenv";
-import { swaggerConfig } from "src/configs/swagger.config";
-import cors from "cors";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import { User } from "./src/models/user.model";
+import authRouter from "./src/routes/auth.route";
 
-import authRouter from "src/routes/auth.route";
-
-dotevn.config();
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT;
-
-const specs = swaggerJsdoc(swaggerConfig);
-
-mongoose
-    .connect(process.env.DB_URL || '')
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((err: Error) => {
-        console.error('Error connecting to MongoDB:', err);
-    });
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use("/api/auth", authRouter);
+mongoose
+  .connect(process.env.URI || '',)
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err: Error) => {
+    console.error('Error connecting to MongoDB:', err);
+  });
 
+// Routes
 app.get("/api", (req: Request, res: Response) => {
     res.send("Hello World!");
-});
+  });
+    
+app.use("/api/auth", authRouter);
 
+// Start server
 app.listen(port, () => {
-    console.log(`Listening on port ${port}...`);
+  console.log(`Listening on port ${port}...`);
 });
