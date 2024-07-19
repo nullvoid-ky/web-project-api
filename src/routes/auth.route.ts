@@ -1,7 +1,6 @@
 import authController from "../controller/auth.controller";
-const authRouter = require('express').Router();
+const authRouter = require("express").Router();
 
-
-authRouter.post('/register', authController.register);
+authRouter.post("/register", authController.register);
 
 export default authRouter;

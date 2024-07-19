@@ -5,6 +5,6 @@ import { UserInterface } from "../interfaces/user.interface";
 const User: Model<UserInterface> = mongoose.model<UserInterface>(
   "User",
   userSchema,
-  "users"
+  "UsersDatabase"
 );
 export { User };
