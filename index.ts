@@ -2,10 +2,8 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import { User } from "./src/models/user.model";
 import authRouter from "./src/routes/auth.route";
-import otherRouter from "./src/routes/other.route";
-
+import userRouter from "./src/routes/user.route";
 dotenv.config();
 
 const app = express();
@@ -29,7 +27,7 @@ app.get("/api", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRouter);
-app.use("/api/other", otherRouter);
+app.use("/api/user", userRouter);
 
 // Start server
 app.listen(port, () => {
