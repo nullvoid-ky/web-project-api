@@ -3,7 +3,7 @@ import { userService } from "../services/user.service";
 import { UpdateUserRequestDto } from "../dto/user.dto";
 import { UserInterface } from "../interfaces/user.interface";
 import { UpdateUserData } from "../types/user.type";
-
+import tokenController from "./token.controller";
 const userController = {
   async createUser(req: Request, res: Response) {
     try {

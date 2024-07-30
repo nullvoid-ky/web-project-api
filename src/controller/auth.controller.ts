@@ -92,7 +92,6 @@ const authController = {
       if (!user) {
         return res.status(400).send("User does not exist");
       }
-
       const isPasswordValid = await authService.verifyPassword(
         user.password,
         password
@@ -104,7 +103,6 @@ const authController = {
         });
         return res.status(200).json({ accessToken, user });
       }
-
       return res.status(400).send("Invalid Password");
     } catch (error) {
       console.error("Login Error:", error);
